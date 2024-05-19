@@ -1,10 +1,11 @@
 from flask import Flask, request, jsonify
-import pickle
+import joblib
+
 
 app = Flask(__name__)
 
 # load model
-model, _ = pickle.load(open('car-price-predict.pkl', 'rb'))
+model, _ = joblib.load(open('car-price-predict.pkl', 'rb'))
 
 # prediction function route
 @app.route('/predict', methods=['POST'])
