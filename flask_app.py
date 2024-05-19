@@ -4,12 +4,18 @@ import joblib
 
 app = Flask(__name__)
 
-# load model
-model = joblib.load('model.pkl')
+def load_object(filename):
+    with open(filename ,'rb') as f:
+        loaded = joblib.load(f)
+    return loaded
 
 # prediction function route
 @app.route('/predict', methods=['POST'])
 def predict():
+    
+    # load the model
+    model, _ = load_object('model.joblib')
+    
     # get the data from the POST request
     data = request.get_json()
     prediction = model.predict([data['features']])
