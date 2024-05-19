@@ -3,8 +3,8 @@ import pickle
 
 app = Flask(__name__)
 
-# load rf.pkl model
-model = pickle.load(open('rf.pkl', 'rb'))
+# load model
+model, _ = pickle.load(open('car-price-predict.pkl', 'rb'))
 
 # prediction function route
 @app.route('/predict', methods=['POST'])
